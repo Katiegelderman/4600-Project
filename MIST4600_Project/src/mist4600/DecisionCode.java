@@ -11,6 +11,7 @@ public class DecisionCode {
 		String scenOneVar = "bleh";
 
 		while (!scenOneVar.equals("Quit")) {
+			System.out.println();
 			System.out.println("Enter food name or \"Quit\" to exit");	
 			
 			scenOneVar = scnr.next().toLowerCase();
@@ -23,10 +24,12 @@ public class DecisionCode {
 			
 			
 			if(selectedItem != null) {
+				System.out.println();
 				selectedItem.printCurrentAndDesired(); 
 				ChangeLog.changes.add("Current and desired stock values of " + selectedItem.getName() + " was viewed at " + LocalDateTime.now());
 			}
 			else {
+				System.out.println();
 				System.out.println("Food item not found");
 			}
 		}
@@ -39,7 +42,8 @@ public class DecisionCode {
 		String scenTwoVar = "bleh";
 		
 		while (!scenTwoVar.equals("Quit")) {
-			
+		
+		System.out.println();
 		System.out.println("Enter food name or \"Quit\" to exit");
 		
 		scenTwoVar = scnr.next().toLowerCase();
@@ -52,14 +56,17 @@ public class DecisionCode {
 		
 		
 		if(selectedItem != null) {
+			System.out.println();
 			System.out.println(selectedItem.getName() + "'s current stock is " + selectedItem.getCurrentStockLevel());
 			System.out.println("Would you like to update stock? Type \"Y\" to proceed or anything else to go back");
 			
 			if (scnr.next().equalsIgnoreCase("Y")) {
 				int oldStock = selectedItem.getCurrentStockLevel();
+				System.out.println();
 				System.out.println("Enter updated stock: ");
 				int newStock = scnr.nextInt();
 				selectedItem.setCurrentStockLevel(newStock);
+				System.out.println();
 				System.out.println(selectedItem.getName() + "'s updated stock is " + selectedItem.getCurrentStockLevel());
 				ChangeLog.changes.add("Current stock of " + selectedItem.getName() + " was changed from " + oldStock + " to " + selectedItem.getCurrentStockLevel() + " at " + LocalDateTime.now());
 			}
@@ -127,20 +134,36 @@ public class DecisionCode {
 	}
 	
 	
+	
 	//Scenario 2 Main Code
 	public static void runScenFour(Scanner scnr) {
 		
 		String scenFourVar = "bleh";
+		String initScenFourVar = "bleh";
+		int sessionChanges = 0;
 		
-		while (!scenFourVar.equals("Quit")) {
+		while (!initScenFourVar.equals("Quit")) {
 			
-			System.out.println("Welcome to the auto inventory updating app. Enter food name to continue or \"Quit\" to exit");
+			System.out.println();
+			System.out.println("Welcome to your auto inventory updating app! To get started select an option:\n1: Record stock change of menu item\n2: View list of inventory\n3: View stock changes made this session\n4: \"Quit\" to exit");
 			
-			scenFourVar = scnr.next().toLowerCase();
 			
-			if (scenFourVar.equalsIgnoreCase("quit")) {
+			initScenFourVar = scnr.next().toLowerCase();
+			
+			if (initScenFourVar.equalsIgnoreCase("quit")) {
+				for (int i = 0; i < sessionChanges; ++i) {
+					ChangeLog.delChangesMade();
+				}
+				
 				break;
 			}
+			
+			//Record stock changes of menu item
+			if (initScenFourVar.equals("1")) {
+				
+			System.out.println("Type name of item you would like to record stock change for");
+			
+			scenFourVar = scnr.next();
 			
 			MenuItem selectedItem = MenuItem.fetchFoodByName(scenFourVar);
 			
@@ -165,8 +188,10 @@ public class DecisionCode {
 					}
 					
 					
-					ChangeLog.changes.add(selectedItem.getName() + "' stock was reported to be consumed " + amtConsumed + " units and therefore the system has suggested that " + (selectedItem.getDesiredStockLevel() - selectedItem.getCurrentStockLevel()) 
+					ChangeLog.changes.add(selectedItem.getName() + "'s stock was reported to be consumed " + amtConsumed + " units and the system has recommended " + (selectedItem.getDesiredStockLevel() - selectedItem.getCurrentStockLevel()) 
 							+ " amount of units be ordered for restock at " + LocalDateTime.now());
+					ChangeLog.addChangesMade();
+					++sessionChanges;
 				}
 				else {
 					System.out.println();
@@ -174,12 +199,23 @@ public class DecisionCode {
 				}
 
 			}
+			
 			else {
 				System.out.println("Food item not found");
 			}
 			
 			
-				
+			}
+			//View list of inventory
+			else if (initScenFourVar.equals("2")) {
+				//
+			}
+			//View stock changes made this session
+			else if (initScenFourVar.equals("3")) {
+				//System.out.println(sessionChanges);
+				//ChangeLog.printNumTempChangesMade();
+				ChangeLog.tempPrintChangeLog();
+			}
 		}
 			
 		

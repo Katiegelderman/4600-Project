@@ -36,6 +36,9 @@ public class Main {
 		}
 		else if (initDecisionVar.equals("3")) {
 			
+			while (true) {
+			
+			System.out.println();
 			System.out.println("Choose a following option:");
 			System.out.println("1: View current stock/desired stock values");
 			System.out.println("2: Update current stock");
@@ -96,6 +99,8 @@ public class Main {
 				
 
 		
+		}
+			
 		}
 			
 			
