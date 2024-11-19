@@ -21,7 +21,6 @@ public class CheckOpenDay {
        }
        else {
            System.out.println("Cali N Titos is not open on " + inputDay);
-           scnr.close();
        }
    }
 }

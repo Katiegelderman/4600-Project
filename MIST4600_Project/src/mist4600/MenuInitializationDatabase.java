@@ -6,7 +6,7 @@ public class MenuInitializationDatabase {
 			
 			new CubanSandwich("SteakCuban", 50, 25, true, 12.99, "Steak");
 			new CubanSandwich("ChickenCuban", 50, 25, true, 12.99, "Chicken");
-			new CubanSandwich("PorkCuban", 50, 25, true, 12.99, "Pork");
+			new CubanSandwich("PorkCuban", 50, 0, false, 12.99, "Pork");
 			new CubanSandwich("ChorizoCuban", 50, 25, false, 12.99, "Chorizo");
 			new CubanSandwich("VegetarianCuban", 50, 25, true, 12.99, "Vegetarian");
 			new CubanSandwich("PastorCuban", 50, 25, true, 12.99, "Pastor");

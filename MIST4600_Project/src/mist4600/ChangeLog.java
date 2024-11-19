@@ -17,6 +17,17 @@ public class ChangeLog {
 			}
 	}
 	
+	public static ArrayList<String> suggestedChanges = new ArrayList<>();
+	
+	public static void printSuggestedChangeLog() {
+		System.out.println("Stock ordered: ");
+		int changeNumber = 1;
+			for (String changeMade : suggestedChanges) {
+				System.out.println(changeNumber + ": " + changeMade);
+				++changeNumber;
+			}
+	}
+	
 	
 	public static void addChangesMade() {
 		++numTempChangesMade;
@@ -38,5 +49,7 @@ public class ChangeLog {
 				++changeNumber;
 			}
 	}
+	
+
 	
 }

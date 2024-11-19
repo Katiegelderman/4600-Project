@@ -146,14 +146,15 @@ public class DecisionCode {
 	//Scenario 1 Main Code
 	public static void runMainScenOne(Scanner scnr) {
 		
-		String mainScenOne = "bleh";
 		String initMainScenOne = "bleh";
+		String selectCuban = "";
 		
 		while (!initMainScenOne.equalsIgnoreCase("Quit")) {
 			
-			System.out.println();
+			
+			
 			System.out.println("Welcome to the Cuban Management System!");
-			System.out.println("Type \"Cuban\" to continue or \"Quit\" to return");
+			System.out.println("Type \"1\" to continue, \"2\" to view open days, or \"Quit\" to return");
 			
 			initMainScenOne = scnr.next().toLowerCase();
 			
@@ -161,8 +162,58 @@ public class DecisionCode {
 				break;
 			}
 			
-			if (initMainScenOne.equalsIgnoreCase("Cuban")) {
-				System.out.println(":o");
+			if (initMainScenOne.equalsIgnoreCase("1")) {
+				System.out.println();
+				int numberList = 1;
+				
+				for (CubanSandwich sandwich : CubanSandwich.getCubanType()) {
+					if (sandwich.isInStock()) {
+						System.out.println(numberList + ": " + sandwich);
+						++numberList;
+					}
+					else {}
+				}
+				
+				System.out.println();
+				System.out.println("Type name of cuban that customer would like to order");
+				
+				selectCuban = scnr.next().toLowerCase();
+				
+				MenuItem selectedItem = MenuItem.fetchFoodByName(selectCuban);
+				
+				if(selectedItem != null) {
+					System.out.println();
+					System.out.println(selectedItem.getName() + " to be ordered\nInput number you would like to order:");
+					
+					int quantOrdered = 0;
+					
+					quantOrdered = scnr.nextInt();
+					
+					
+					if (quantOrdered <= selectedItem.getCurrentStockLevel()) {
+					System.out.println("Order Processing...");
+					System.out.println("Your " + quantOrdered + " " + selectedItem.getName() + " will be ready shortly\nThank you for coming!");
+					System.out.println();
+					ChangeLog.changes.add(quantOrdered + " units of " + selectedItem.getName() + " were ordered at " + LocalDateTime.now());
+					ChangeLog.suggestedChanges.add(quantOrdered + " units of " + selectedItem.getName() + " were ordered at " + LocalDateTime.now());
+					break;
+					}
+					else {
+						System.out.println(selectedItem.getName() + " is out of stock, returning to menu");
+						System.out.println();
+						
+					}
+					
+				}
+				else {
+					System.out.println();
+					System.out.println("Food item not found");
+				}
+			}
+			else if (initMainScenOne.equals("2")) {
+				CheckOpenDay checkOpenDay = new CheckOpenDay();
+				checkOpenDay.dayCheck();
+				System.out.println();
 			}
 			else {
 				System.out.println();
@@ -185,7 +236,7 @@ public class DecisionCode {
 		while (!initScenFourVar.equals("Quit")) {
 			
 			System.out.println();
-			System.out.println("Welcome to your auto inventory updating app! To get started select an option:\n1: Record stock change of menu item\n2: View list of inventory\n3: View stock changes made this session\n4: \"Quit\" to exit");
+			System.out.println("Welcome to your auto inventory updating app! To get started select an option:\n1: Record stock change of menu item\n2: View list of inventory\n3: View order history of session\n4: View stock changes made this session\n5: \"Quit\" to exit");
 			
 			
 			initScenFourVar = scnr.next().toLowerCase();
@@ -259,8 +310,12 @@ public class DecisionCode {
 					
 				}
 			}
-			//View stock changes made this session
+			
 			else if (initScenFourVar.equals("3")) {
+				ChangeLog.printSuggestedChangeLog();
+			}
+			//View stock changes made this session
+			else if (initScenFourVar.equals("4")) {
 				//System.out.println(sessionChanges);
 				//ChangeLog.printNumTempChangesMade();
 				ChangeLog.tempPrintChangeLog();
