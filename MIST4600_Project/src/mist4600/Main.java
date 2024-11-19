@@ -28,12 +28,15 @@ public class Main {
 			break;
 		}
 		
+		//To-Be Scenario 1
 		if (initDecisionVar.equals("1")) {
-			//
+			DecisionCode.runMainScenOne(scnr);
 		}
+		//Scenario 2
 		else if (initDecisionVar.equals("2")) {
 			DecisionCode.runScenFour(scnr);
 		}
+		//Extra functions
 		else if (initDecisionVar.equals("3")) {
 			
 			while (true) {

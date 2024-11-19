@@ -1,6 +1,7 @@
 package mist4600;
 
 import java.util.Scanner;
+
 public class CheckOpenDay {
 	private static final String[] openDays = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
 	public boolean isOpenDay(String day) {

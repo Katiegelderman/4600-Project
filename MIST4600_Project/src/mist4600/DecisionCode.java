@@ -66,9 +66,19 @@ public class DecisionCode {
 				System.out.println("Enter updated stock: ");
 				int newStock = scnr.nextInt();
 				selectedItem.setCurrentStockLevel(newStock);
-				System.out.println();
-				System.out.println(selectedItem.getName() + "'s updated stock is " + selectedItem.getCurrentStockLevel());
-				ChangeLog.changes.add("Current stock of " + selectedItem.getName() + " was changed from " + oldStock + " to " + selectedItem.getCurrentStockLevel() + " at " + LocalDateTime.now());
+				
+				if (newStock > 0) {
+					System.out.println();
+					System.out.println(selectedItem.getName() + "'s updated stock is " + selectedItem.getCurrentStockLevel());
+					ChangeLog.changes.add("Current stock of " + selectedItem.getName() + " was changed from " + oldStock + " to " + selectedItem.getCurrentStockLevel() + " at " + LocalDateTime.now());
+				}
+				else if (newStock == 0) {
+					selectedItem.setInStock(false);
+					System.out.println();
+					System.out.println(selectedItem.getName() + "'s updated stock is " + selectedItem.getCurrentStockLevel());
+					ChangeLog.changes.add("Current stock of " + selectedItem.getName() + " was changed from " + oldStock + " to " + selectedItem.getCurrentStockLevel() + " at " + LocalDateTime.now() + "\n" + selectedItem.getName() + " is now out of stock.");
+					}
+				else {}
 			}
 			else {
 				System.out.println();
@@ -133,7 +143,37 @@ public class DecisionCode {
 		
 	}
 	
-	
+	//Scenario 1 Main Code
+	public static void runMainScenOne(Scanner scnr) {
+		
+		String mainScenOne = "bleh";
+		String initMainScenOne = "bleh";
+		
+		while (!initMainScenOne.equalsIgnoreCase("Quit")) {
+			
+			System.out.println();
+			System.out.println("Welcome to the Cuban Management System!");
+			System.out.println("Type \"Cuban\" to continue or \"Quit\" to return");
+			
+			initMainScenOne = scnr.next().toLowerCase();
+			
+			if (initMainScenOne.equalsIgnoreCase("Quit")) {
+				break;
+			}
+			
+			if (initMainScenOne.equalsIgnoreCase("Cuban")) {
+				System.out.println(":o");
+			}
+			else {
+				System.out.println();
+				System.out.println("Error: Please input valid option");
+			}
+			
+			
+			
+		}
+		
+	}
 	
 	//Scenario 2 Main Code
 	public static void runScenFour(Scanner scnr) {
@@ -208,7 +248,16 @@ public class DecisionCode {
 			}
 			//View list of inventory
 			else if (initScenFourVar.equals("2")) {
-				//
+				System.out.println("Inventory List");
+				
+				for (String key : MenuItem.foodDatabase.keySet()) {
+					
+					MenuItem selectedItem = MenuItem.fetchFoodByName(key);
+					System.out.println("[" + selectedItem.getName() + "]" + " Current Stock: " + selectedItem.getCurrentStockLevel() + " Desired Stock: " + selectedItem.getDesiredStockLevel());
+					
+					
+					
+				}
 			}
 			//View stock changes made this session
 			else if (initScenFourVar.equals("3")) {

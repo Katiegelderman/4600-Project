@@ -18,12 +18,26 @@ public class CubanSandwich extends MenuItem {
 
 	public void setMeatType(String meatType) { this.meatType = meatType; }
 	
+
+	
 	public static HashSet<CubanSandwich> getCubanType() { return cubanType; }
 
+	boolean cubanInStock = true;
+	
 	@Override
 	public String toString() {
-		return getName() + " | " + "Meat Type: " + getMeatType() + " | Price: " + getPrice() ;
+
+		String inStockResult = "Yes";
+		if (cubanInStock = isInStock()) {
+			
+		}
+		else {
+			inStockResult = "No";
+		}
+		return getName() + " | " + "Meat Type: " + getMeatType() + " | Price: " + getPrice() + " | In Stock?: " + inStockResult;
+					
 	}
+	
 	
 	
 	public static CubanSandwich fetchFoodByName(String name) {
