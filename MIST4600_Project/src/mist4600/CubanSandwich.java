@@ -34,6 +34,7 @@ public class CubanSandwich extends MenuItem {
 		else {
 			inStockResult = "No";
 		}
+		
 		return getName() + " | " + "Meat Type: " + getMeatType() + " | Price: " + getPrice() + " | In Stock?: " + inStockResult;
 					
 	}

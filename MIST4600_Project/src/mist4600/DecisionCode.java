@@ -68,14 +68,15 @@ public class DecisionCode {
 				selectedItem.setCurrentStockLevel(newStock);
 				
 				if (newStock > 0) {
+					selectedItem.setInStock(true);
 					System.out.println();
 					System.out.println(selectedItem.getName() + "'s updated stock is " + selectedItem.getCurrentStockLevel());
 					ChangeLog.changes.add("Current stock of " + selectedItem.getName() + " was changed from " + oldStock + " to " + selectedItem.getCurrentStockLevel() + " at " + LocalDateTime.now());
 				}
-				else if (newStock == 0) {
+				else if (newStock <= 0) {
 					selectedItem.setInStock(false);
 					System.out.println();
-					System.out.println(selectedItem.getName() + "'s updated stock is " + selectedItem.getCurrentStockLevel());
+					System.out.println(selectedItem.getName() + "'s updated stock is " + selectedItem.getCurrentStockLevel() + ", it is now out of stock");
 					ChangeLog.changes.add("Current stock of " + selectedItem.getName() + " was changed from " + oldStock + " to " + selectedItem.getCurrentStockLevel() + " at " + LocalDateTime.now() + "\n" + selectedItem.getName() + " is now out of stock.");
 					}
 				else {}
@@ -153,7 +154,7 @@ public class DecisionCode {
 			
 			
 			
-			System.out.println("Welcome to the Cuban Management System!");
+			System.out.println("Welcome to the Cuban Sandwich Ordering System!");
 			System.out.println("Type \"1\" to continue, \"2\" to view open days, or \"Quit\" to return");
 			
 			initMainScenOne = scnr.next().toLowerCase();
@@ -162,6 +163,7 @@ public class DecisionCode {
 				break;
 			}
 			
+			//Main Path
 			if (initMainScenOne.equalsIgnoreCase("1")) {
 				System.out.println();
 				int numberList = 1;
@@ -175,7 +177,7 @@ public class DecisionCode {
 				}
 				
 				System.out.println();
-				System.out.println("Type name of cuban that customer would like to order");
+				System.out.println("Type name of cuban that you would like to order");
 				
 				selectCuban = scnr.next().toLowerCase();
 				
@@ -210,9 +212,10 @@ public class DecisionCode {
 					System.out.println("Food item not found");
 				}
 			}
+			//Check if open
 			else if (initMainScenOne.equals("2")) {
 				CheckOpenDay checkOpenDay = new CheckOpenDay();
-				checkOpenDay.dayCheck();
+				checkOpenDay.dayCheck(scnr);
 				System.out.println();
 			}
 			else {
@@ -236,7 +239,7 @@ public class DecisionCode {
 		while (!initScenFourVar.equals("Quit")) {
 			
 			System.out.println();
-			System.out.println("Welcome to your auto inventory updating app! To get started select an option:\n1: Record stock change of menu item\n2: View list of inventory\n3: View order history of session\n4: View stock changes made this session\n5: \"Quit\" to exit");
+			System.out.println("Welcome to your auto inventory updating app! To get started select an option:\n1: Record stock change of menu item\n2: View list of inventory\n3: View order history of session\n4: View stock changes made this session\nType \"Quit\" to exit");
 			
 			
 			initScenFourVar = scnr.next().toLowerCase();
@@ -310,7 +313,7 @@ public class DecisionCode {
 					
 				}
 			}
-			
+			//Prints a history of cuban sand ordered during Scenario 1. (Suggested that these stock adjustments be recorded)
 			else if (initScenFourVar.equals("3")) {
 				ChangeLog.printSuggestedChangeLog();
 			}
@@ -393,7 +396,7 @@ public class DecisionCode {
 		
 		while (!scenSevVar.equals("Quit")) {
 			
-		System.out.println("Type anything to view inventory or \"Quit\" to exit");
+		System.out.println("Type anything to view list of Cuban subs or \"Quit\" to exit");
 		
 		scenSevVar = scnr.next().toLowerCase();
 		

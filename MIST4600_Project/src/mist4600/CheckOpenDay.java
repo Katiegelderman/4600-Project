@@ -12,15 +12,19 @@ public class CheckOpenDay {
        }
        return false;
    }
-   public void dayCheck() {
-       Scanner scnr = new Scanner(System.in);
-       System.out.print("Enter a day: ");
-       String inputDay = scnr.nextLine();
+	//Scenario 1: Option 2
+   public void dayCheck(Scanner scnr) {
+       System.out.println("Enter the day: ");
+       String inputDay = "";
+       inputDay = scnr.next();
+       
        if (isOpenDay(inputDay)) {
-           System.out.println("Cali N Titos is open on " + inputDay);
+           System.out.println("Cali N Titos is open on " + inputDay + "!");
        }
        else {
            System.out.println("Cali N Titos is not open on " + inputDay);
        }
+       
+       
    }
 }

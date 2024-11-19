@@ -17,6 +17,7 @@ public class ChangeLog {
 			}
 	}
 	
+	//Used to store specific list of sandwiches ordered during Scenario 1
 	public static ArrayList<String> suggestedChanges = new ArrayList<>();
 	
 	public static void printSuggestedChangeLog() {

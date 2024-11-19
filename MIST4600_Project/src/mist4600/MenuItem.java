@@ -37,6 +37,7 @@ public class MenuItem {
 	public void setPrice(double price) {this.price = price; }
 
 	
+	//Allows user to dynamically access different MenuItems by searching up their key "A string that is the same as the name of the MenuItem"
 	public static MenuItem fetchFoodByName(String name) {
 		return foodDatabase.get(name.toLowerCase());
 	}
@@ -49,8 +50,7 @@ public class MenuItem {
 		System.out.println("Difference = " + (desiredStockLevel - currentStockLevel));
 	
 	}
-	 // Abstract method that subclasses must implement
-	//public String getDescription();
+
 	
 	public String toString() {
 		return getName() + " | " + "Price: " + getPrice();

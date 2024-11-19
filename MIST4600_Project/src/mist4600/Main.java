@@ -28,7 +28,7 @@ public class Main {
 			break;
 		}
 		
-		//To-Be Scenario 1
+		//Scenario 1
 		if (initDecisionVar.equals("1")) {
 			DecisionCode.runMainScenOne(scnr);
 		}
@@ -36,6 +36,7 @@ public class Main {
 		else if (initDecisionVar.equals("2")) {
 			DecisionCode.runScenFour(scnr);
 		}
+		
 		//Extra functions
 		else if (initDecisionVar.equals("3")) {
 			
@@ -61,12 +62,13 @@ public class Main {
 				break;
 			}
 			
-				
+				//View current and desired stock levels of specific food item
 				if (decisionVar.equals("1")) {
 					
 					DecisionCode.runScenOne(scnr);
 			
 				}
+				//Access and Mutate current stock values
 				else if (decisionVar.equals("2")) {
 						
 						
@@ -74,20 +76,24 @@ public class Main {
 										
 						
 				}
+				//Access and Mutate desired stock values
 				else if (decisionVar.equals("3")) {
 			
 					DecisionCode.runScenThree(scnr);
 			
 				}
+				//Changelog
 				else if (decisionVar.equals("4")) {
 					
 					DecisionCode.runScenFive(scnr);
 				}
+				//Total Inventory List
 				else if (decisionVar.equals("5")) {
 					
 					DecisionCode.runScenSix(scnr);
 					
 				}
+				//Test Scenario: Prints Cuban Hashset toString()
 				else if (decisionVar.equals("7")) {
 					
 					DecisionCode.runScenSev(scnr);
