@@ -16,11 +16,8 @@ public class Main {
 			
 		String initDecisionVar;
 		
-		System.out.println("Choose a following option:");
-		System.out.println("1: Scenario 1");
-		System.out.println("2: Scenario 2");
-		System.out.println("3: Extra functions");
-		System.out.println("Type \"Quit\" to exit");
+		//Choose Scenario Menu Print Method
+		DecisionCode.initMenu();
 		
 		initDecisionVar = scnr.next();
 		
@@ -36,20 +33,18 @@ public class Main {
 		else if (initDecisionVar.equals("2")) {
 			DecisionCode.runScenFour(scnr);
 		}
+		//Scenario 3 (Honors Scenario)
+		else if (initDecisionVar.equals("3")) {
+			DecisionCode.runScenHonors(scnr);
+		}
 		
 		//Extra functions
-		else if (initDecisionVar.equals("3")) {
+		else if (initDecisionVar.equals("4")) {
 			
 			while (true) {
 			
-			System.out.println();
-			System.out.println("Choose a following option:");
-			System.out.println("1: View current stock/desired stock values");
-			System.out.println("2: Update current stock");
-			System.out.println("3: Adjust foods' desired stock values");
-			System.out.println("4: View session's changelog");
-			System.out.println("5: View overall inventory");
-			System.out.println("Type \"Quit\" to exit");
+			//Extra Functions Menu Print Method
+			DecisionCode.extraMenu();
 		
 			String decisionVar;
 		
